@@ -1,0 +1,46 @@
+import wixData from 'wix-data';
+import { elevate } from 'wix-auth';
+
+const COLLECTION = 'ConsultationRequests';
+
+async function findRecentByEmail(email, oneDayAgo) {
+  return wixData.query(COLLECTION).eq('email', email).gt('_createdDate', oneDayAgo).find();
+}
+
+async function insertRequest(item) {
+  return wixData.insert(COLLECTION, item);
+}
+
+const elevatedFindRecentByEmail = elevate(findRecentByEmail);
+const elevatedInsertRequest = elevate(insertRequest);
+
+export async function submitConsultationRequest(formData) {
+  const name = (formData.name || '').trim();
+  const email = (formData.email || '').trim();
+  const company = (formData.company || '').trim();
+  const message = (formData.message || '').trim();
+
+  if (!name || !isValidEmail(email)) {
+    return { success: false, message: 'Please provide your name and a valid email address.' };
+  }
+
+  try {
+    const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
+    const existing = await elevatedFindRecentByEmail(email, oneDayAgo);
+
+    if (existing.items.length > 0) {
+      return { success: true, message: 'We already have your request — our team will reach out shortly.' };
+    }
+
+    await elevatedInsertRequest({ name, email, company, message, status: 'new' });
+
+    return { success: true, message: 'Thanks! We will be in touch within 1 business day.' };
+  } catch (err) {
+    console.error('submitConsultationRequest error:', err);
+    return { success: false, message: 'Something went wrong. Please try again.' };
+  }
+}
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
