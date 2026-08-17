@@ -1,0 +1,15 @@
+/*
+Theme Name: NOVA Studio
+Theme URI: https://example.com
+Author: Your Name
+Author URI: https://example.com
+Description: Custom WordPress theme for the NOVA Studio landing page — built for a creative/digital studio brief (Hero, Services, Why NOVA, Portfolio, Process, Testimonials, Final CTA, Footer). Content is powered by 4 custom post types (Service, Portfolio Item, Testimonial, Process Step) with ACF fields, exposed to the frontend via a custom REST API under /wp-json/nova/v1/.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: nova-studio
+*/
+
+/* This file only carries the required WP theme header comment.
+   All real styling lives in assets/css/main.css (enqueued in functions.php)
+   so it can be organized with CSS custom properties / design tokens. */

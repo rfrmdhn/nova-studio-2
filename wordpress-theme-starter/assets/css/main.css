@@ -1,0 +1,202 @@
+/* ==========================================================================
+   NOVA Studio — Design Tokens
+   ========================================================================== */
+:root {
+  --nova-color-primary: #1E1B4B;
+  --nova-color-primary-dark: #14132B;
+  --nova-color-bg: #FAF9F6;
+  --nova-color-surface: #FFFFFF;
+  --nova-color-accent: #FF6B4A;
+  --nova-color-text: #1A1A2E;
+  --nova-color-text-muted: #6B6B80;
+
+  --nova-font-heading: 'Sora', sans-serif;
+  --nova-font-body: 'Inter', sans-serif;
+
+  --nova-space-xs: 0.5rem;
+  --nova-space-sm: 1rem;
+  --nova-space-md: 2rem;
+  --nova-space-lg: 4rem;
+  --nova-space-xl: 6rem;
+
+  --nova-radius: 12px;
+  --nova-container-width: 1140px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--nova-font-body);
+  color: var(--nova-color-text);
+  background: var(--nova-color-bg);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: var(--nova-font-heading);
+  line-height: 1.2;
+  margin: 0 0 var(--nova-space-sm);
+}
+
+img { max-width: 100%; display: block; }
+
+.nova-container {
+  max-width: var(--nova-container-width);
+  margin: 0 auto;
+  padding: 0 var(--nova-space-md);
+}
+
+.nova-section-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin-bottom: var(--nova-space-md);
+}
+
+.nova-loading-state,
+.nova-empty-state {
+  color: var(--nova-color-text-muted);
+  font-style: italic;
+}
+
+/* Buttons */
+.nova-btn {
+  display: inline-block;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--nova-radius);
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.nova-btn:hover { transform: translateY(-2px); }
+.nova-btn--primary { background: var(--nova-color-accent); color: #fff; }
+.nova-btn--secondary { background: transparent; border: 1.5px solid var(--nova-color-primary); color: var(--nova-color-primary); }
+.nova-btn--small { padding: 0.5rem 1.1rem; font-size: 0.9rem; }
+.nova-btn--large { padding: 1.1rem 2.25rem; font-size: 1.1rem; }
+
+/* Header */
+.nova-header {
+  position: sticky;
+  top: 0;
+  background: rgba(250, 249, 246, 0.9);
+  backdrop-filter: blur(8px);
+  z-index: 50;
+}
+.nova-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--nova-space-sm);
+  gap: var(--nova-space-md);
+}
+.nova-logo {
+  font-family: var(--nova-font-heading);
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--nova-color-primary);
+  text-decoration: none;
+}
+.nova-nav ul { display: flex; gap: var(--nova-space-md); list-style: none; margin: 0; padding: 0; }
+.nova-nav a { color: var(--nova-color-text); text-decoration: none; font-weight: 500; }
+.nova-nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+.nova-nav-toggle span { display: block; width: 22px; height: 2px; background: var(--nova-color-text); margin: 4px 0; }
+
+/* Hero */
+.nova-hero {
+  padding-block: var(--nova-space-xl);
+  background: linear-gradient(180deg, var(--nova-color-bg) 0%, #F1EFE9 100%);
+}
+.nova-hero__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--nova-space-lg);
+  align-items: center;
+}
+.nova-hero__headline { font-size: clamp(2rem, 5vw, 3.25rem); color: var(--nova-color-primary-dark); }
+.nova-hero__subhead { font-size: 1.125rem; color: var(--nova-color-text-muted); max-width: 42ch; }
+.nova-hero__actions { display: flex; gap: var(--nova-space-sm); margin-top: var(--nova-space-md); flex-wrap: wrap; }
+.nova-hero__visual img { border-radius: var(--nova-radius); width: 100%; }
+
+/* Card grids shared by Services / Why NOVA / Portfolio / Testimonials */
+.nova-services__grid,
+.nova-why__grid,
+.nova-portfolio__grid,
+.nova-testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--nova-space-md);
+}
+.nova-card {
+  background: var(--nova-color-surface);
+  border-radius: var(--nova-radius);
+  padding: var(--nova-space-md);
+  box-shadow: 0 8px 24px rgba(20, 19, 43, 0.06);
+}
+.nova-card__title { font-size: 1.15rem; }
+.nova-card__desc { color: var(--nova-color-text-muted); margin: 0; }
+.nova-service-card__icon,
+.nova-portfolio-card img { margin-bottom: var(--nova-space-sm); border-radius: var(--nova-radius); }
+
+/* Process */
+.nova-process__steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--nova-space-md);
+}
+.nova-process-step__number {
+  display: block;
+  font-family: var(--nova-font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--nova-color-accent);
+  margin-bottom: var(--nova-space-xs);
+}
+
+/* Final CTA */
+.nova-final-cta {
+  background: var(--nova-color-primary-dark);
+  color: #fff;
+  padding-block: var(--nova-space-xl);
+  text-align: center;
+}
+.nova-final-cta__inner { max-width: 640px; margin-inline: auto; }
+.nova-final-cta__title { color: #fff; }
+.nova-final-cta__subhead { color: rgba(255, 255, 255, 0.75); margin-bottom: var(--nova-space-md); }
+
+/* Footer */
+.nova-footer { padding-block: var(--nova-space-lg) var(--nova-space-md); border-top: 1px solid rgba(0, 0, 0, 0.06); }
+.nova-footer__inner { display: flex; justify-content: space-between; gap: var(--nova-space-md); flex-wrap: wrap; }
+.nova-footer__nav ul { display: flex; gap: var(--nova-space-sm); list-style: none; margin: 0; padding: 0; }
+.nova-footer__social { display: flex; gap: var(--nova-space-sm); margin-top: var(--nova-space-xs); }
+.nova-footer__bottom { margin-top: var(--nova-space-md); font-size: 0.85rem; color: var(--nova-color-text-muted); }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 860px) {
+  .nova-hero__grid { grid-template-columns: 1fr; }
+  .nova-services__grid, .nova-why__grid, .nova-portfolio__grid, .nova-testimonials__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .nova-process__steps { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .nova-nav { display: none; }
+  .nova-nav.is-open {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--nova-color-bg);
+    padding: var(--nova-space-md);
+  }
+  .nova-nav.is-open ul { flex-direction: column; gap: var(--nova-space-sm); }
+  .nova-nav-toggle { display: inline-flex; flex-direction: column; }
+  .nova-header__inner .nova-btn--small { display: none; }
+
+  .nova-services__grid, .nova-why__grid, .nova-portfolio__grid,
+  .nova-testimonials__grid, .nova-process__steps {
+    grid-template-columns: 1fr;
+  }
+}
